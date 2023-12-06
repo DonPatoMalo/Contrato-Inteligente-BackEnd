@@ -5,6 +5,7 @@ require('dotenv').config({ path: '.env'})
 const jwt = require('jsonwebtoken')
 
 exports.signIn = async (req, res) => {
+      try{
       const rutUser = await User.findOne({rut: req.body.rut})
       const matchPassword = await User.comparePassword(req.body.password, rutUser.password)
 
@@ -24,5 +25,11 @@ exports.signIn = async (req, res) => {
 
       // La respuesta debe ser un token y no el usuario, una futura mejora es una validación del token la cual
       // se encuentra en los middlewares
-      res.json({rutUser})
+      return res.json({rutUser})
+      }catch(e){
+            console.log(e);
+            return res.status(400).json({
+                  msg:e
+            })
+      }
 } 
