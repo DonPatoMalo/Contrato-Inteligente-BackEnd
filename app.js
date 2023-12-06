@@ -13,6 +13,6 @@ app.use(express.json())
 app.use('/api/usuario', require('./routes/usuario.routes.js'));
 app.use('/api/login', require('./routes/auth.routes.js'));
 
-app.listen(8020, () => {
+app.listen(8080, () => {
       console.log('Servidor corriendo en el puerto 8080...')
 })
